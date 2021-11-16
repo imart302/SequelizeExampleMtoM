@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         Worker.belongsToMany(models.Project, {
             through: 'workers-projects',
             foreignKey: 'id_worker',
-            as: 'Project'
+            as: {singular: 'Project', plural: 'Projects'}
         });
     }
   }
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Worker',
+      name: {singular: 'Worker', plural: 'Workers'},
       tableName: 'workers',
       timestamps: false
     }

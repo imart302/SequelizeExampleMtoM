@@ -52,7 +52,7 @@ const workerFetchTest = async () => {
         let workers = await models.Worker.findAll({
             include: {
                 model: models.Project,
-                as: 'Project'
+                as: {singular: 'Project', plural: 'Projects'}
             }
         });
 
@@ -64,7 +64,32 @@ const workerFetchTest = async () => {
     }
 }
 
+const associate2 = async () => {
+    try{
+        let worker = await models.Worker.findByPk(1);
+        console.log(worker);
+        worker.addProjects([1, 2]);
+    }
+    catch(error){
+        console.log(error);
+    }
+};
+
+const removeAssociationTest = async () => {
+    try{
+        let worker = await models.Worker.findByPk(1);
+        worker.removeProjects([1, 2]);
+    }   
+    catch(error){
+        console.log(error);
+    }
+}
+
 //createTest();
 //asociateTest();
 //createAndAssociateTest();
 //workerFetchTest();
+//associate2();
+//workerFetchTest()
+//removeAssociationTest();
+workerFetchTest();
